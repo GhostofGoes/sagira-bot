@@ -1,0 +1,30 @@
+[[source]]
+name = "pypi"
+url = "https://pypi.org/simple"
+verify_ssl = true
+
+[dev-packages]
+flake8 = "*"
+flake8-annotations = "*"
+flake8-bugbear = "*"
+flake8-docstrings = "*"
+flake8-import-order = "*"
+flake8-string-format = "*"
+flake8-tidy-imports = "*"
+pep8-naming = "*"
+pre-commit = "*"
+
+[packages]
+"discord.py" = {extras = ["voice"], version = "*"}
+pyyaml = "*"
+requests = "*"
+
+[requires]
+python_version = "3.8"
+
+[scripts]
+start = "python -m bot"
+lint = "pre-commit run --all-files"
+precommit = "pre-commit install"
+build = "docker build -t pythondiscord/bot:latest -f Dockerfile ."
+push = "docker push pythondiscord/bot:latest"
