@@ -18,6 +18,7 @@ pre-commit = "*"
 "discord.py" = {extras = ["voice"], version = "*"}
 pyyaml = "*"
 requests = "*"
+loguru = "*"
 
 [requires]
 python_version = "3.8"
