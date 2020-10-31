@@ -1,0 +1,16 @@
+version: "3.7"
+
+services:
+  sagira:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: sagira
+    init: true
+    restart: always
+    environment:
+      - SAGIRA_TOKEN=${SAGIRA_TOKEN}
+      - SAGIRA_DEBUG=${SAGIRA_DEBUG:-true}
+    volumes:
+      - /opt/sagira/log:/bot/bot/log
+      - /opt/sagira/data:/bot/data
