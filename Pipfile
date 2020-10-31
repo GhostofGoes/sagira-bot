@@ -3,6 +3,10 @@ name = "pypi"
 url = "https://pypi.org/simple"
 verify_ssl = true
 
+[packages]
+"discord.py" = "~=1.5.1"
+loguru = "~=0.5"
+
 [dev-packages]
 flake8 = "*"
 flake8-annotations = "*"
@@ -12,13 +16,7 @@ flake8-import-order = "*"
 flake8-string-format = "*"
 flake8-tidy-imports = "*"
 pep8-naming = "*"
-pre-commit = "*"
-
-[packages]
-"discord.py" = {extras = ["voice"], version = "*"}
-pyyaml = "*"
-requests = "*"
-loguru = "*"
+pre-commit = "~=2.8"
 
 [requires]
 python_version = "3.8"
@@ -27,5 +25,5 @@ python_version = "3.8"
 start = "python -m bot"
 lint = "pre-commit run --all-files"
 precommit = "pre-commit install"
-build = "docker build -t pythondiscord/bot:latest -f Dockerfile ."
-push = "docker push pythondiscord/bot:latest"
+build = "docker build -t ghostofgoes/sagira-bot:latest -f Dockerfile ."
+push = "docker push ghostofgoes/sagira-bot:latest"
