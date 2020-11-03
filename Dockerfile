@@ -8,7 +8,7 @@ ENV PIP_NO_CACHE_DIR=false \
     PIP_DISABLE_PIP_VERSION_CHECK=1
 
 # Copy the project files into working directory
-WORKDIR /bot
+WORKDIR /sagira
 COPY . .
 
 # Install pipenv and project dependencies
@@ -23,4 +23,4 @@ ENTRYPOINT ["python"]
 CMD ["-m", "bot"]
 
 # Define docker persistent volumes
-VOLUME /bot/bot/log /bot/data
+VOLUME /sagira/log /sagira/data

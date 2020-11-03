@@ -1,7 +1,7 @@
 version: "3.7"
 
 x-service-base: &service-base
-  restart: always
+  restart: unless-stopped
   env_file: .env
   logging:
     driver: "json-file"
@@ -12,7 +12,7 @@ x-service-base: &service-base
     - db-net
 
 services:
-  bot:
+  sagira:
     <<: *service-base
     image: "ghostofgoes/sagira-bot:latest"
     build:
@@ -22,15 +22,24 @@ services:
     container_name: sagira
     init: true
     volumes:
-      - /opt/sagira/log:/bot/bot/log
-      - /opt/sagira/data:/bot/data
+      - bot_log:/sagira/log
+      - bot_data:/sagira/data
   db:
     <<: *service-base
     image: "mongo:4.4-bionic"
-    container_name: mongodb
+    container_name: db
     environment:
+      - MONGO_INITDB_ROOT_USERNAME=$MONGO_USERNAME
+      - MONGO_INITDB_ROOT_PASSWORD=$MONGO_PASSWORD
       - MONGO_HOSTNAME=db
+    volumes:
+      - dbdata:/data/db
 
 networks:
   db-net:
     driver: bridge
+
+volumes:
+  dbdata:
+  bot_log:
+  bot_data:
