@@ -9,7 +9,7 @@ ENV PIP_NO_CACHE_DIR=false \
 
 # Copy the project files into working directory
 WORKDIR /sagira
-COPY . .
+COPY Pipfile* ./
 
 # Install pipenv and project dependencies
 # '--virtual': https://stackoverflow.com/a/49714913
@@ -17,6 +17,9 @@ RUN apk add --no-cache --virtual .build-deps alpine-sdk \
   && pip install pipenv \
   && pipenv install --deploy --system \
   && apk del .build-deps
+
+COPY ./LICENSE ./LICENSE
+COPY ./bot/ ./bot/
 
 # TODO: healthcheck
 ENTRYPOINT ["python"]
