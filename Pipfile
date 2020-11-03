@@ -17,6 +17,7 @@ flake8-string-format = "*"
 flake8-tidy-imports = "*"
 pep8-naming = "*"
 pre-commit = "~=2.8"
+pycalver = "*"
 
 [requires]
 python_version = "3.8"
