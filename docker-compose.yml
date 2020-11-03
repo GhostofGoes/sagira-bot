@@ -1,16 +1,36 @@
 version: "3.7"
 
+x-service-base: &service-base
+  restart: always
+  env_file: .env
+  logging:
+    driver: "json-file"
+    options:
+      max-size: "1m"
+      max-file: "10"
+  networks:
+    - db-net
+
 services:
-  sagira:
+  bot:
+    <<: *service-base
+    image: "ghostofgoes/sagira-bot:latest"
     build:
       context: .
       dockerfile: Dockerfile
+      cache_from: ["ghostofgoes/sagira-bot:latest"]
     container_name: sagira
     init: true
-    restart: always
-    environment:
-      - SAGIRA_TOKEN=${SAGIRA_TOKEN}
-      - SAGIRA_DEBUG=${SAGIRA_DEBUG:-true}
     volumes:
       - /opt/sagira/log:/bot/bot/log
       - /opt/sagira/data:/bot/data
+  db:
+    <<: *service-base
+    image: "mongo:4.4-bionic"
+    container_name: mongodb
+    environment:
+      - MONGO_HOSTNAME=db
+
+networks:
+  db-net:
+    driver: bridge

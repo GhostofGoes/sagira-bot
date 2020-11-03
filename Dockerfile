@@ -18,6 +18,7 @@ RUN apk add --no-cache --virtual .build-deps alpine-sdk \
   && pipenv install --deploy --system \
   && apk del .build-deps
 
+# TODO: healthcheck
 ENTRYPOINT ["python"]
 CMD ["-m", "bot"]
 
