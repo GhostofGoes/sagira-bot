@@ -6,8 +6,6 @@ from bot.cogs.schedule import ScheduleCog
 from bot.constants import Config
 
 # TODO
-#   * Move Colours into constants to avoid triggering
-#       factories and add custom colors
 #   * https://github.com/MagicStack/uvloop
 
 
