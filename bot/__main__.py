@@ -6,8 +6,14 @@ from bot.cogs.schedule import ScheduleCog
 from bot.constants import Config
 from . import __version__
 
-# TODO
-#   * https://github.com/MagicStack/uvloop
+# Faster asyncio loop (not available on Windows)
+# https://github.com/MagicStack/uvloop
+try:
+    import uvloop
+    logger.info("Using uvloop for asyncio loop")
+    uvloop.install()
+except ImportError:
+    logger.info("Using vanilla asyncio loop")
 
 logger.info(
     f"Initializing Sagira\n"
