@@ -7,6 +7,7 @@ verify_ssl = true
 "discord.py" = "~=1.5.1"
 loguru = "~=0.5"
 uvloop = {version = "~=0.14.0", sys_platform = "!= 'win32'"}
+motor = "~=2.3"
 
 [dev-packages]
 flake8 = "*"

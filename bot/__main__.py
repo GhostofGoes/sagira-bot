@@ -31,3 +31,29 @@ sagira_bot.add_cog(ScheduleCog(sagira_bot))
 
 logger.info(f"Running Sagira v{__version__}")
 sagira_bot.run(Config.token)
+
+
+# import os
+# import asyncio
+# import motor.motor_asyncio
+# host = os.environ["MONGO_HOSTNAME"]
+# user = os.environ["MONGO_USERNAME"]
+# pswd = os.environ["MONGO_PASSWORD"]
+# port = os.environ["MONGO_PORT"]
+# client = motor.motor_asyncio.AsyncIOMotorClient(f"mongodb://{user}:{pswd}@{host}:{port}")
+# db = client["sagiradb"]
+#
+# col = db["schedules"]
+#
+# async def insert():
+#     test_doc = {"hi": "hello", "one": 1}
+#     result = await col.insert_one(test_doc)
+#     logger.info(result)
+#
+# async def find():
+#     cursor = col.find_one()
+#     logger.info(cursor)
+#
+# loop = asyncio.get_event_loop()
+# loop.run_until_complete(insert())
+# loop.run_until_complete(find())
