@@ -2,6 +2,7 @@ import discord
 from loguru import logger
 
 from bot.bot import SagiraBot
+from bot.cogs.raid_report import RaidReportCog
 from bot.cogs.schedule import ScheduleCog
 from bot.constants import Config
 from . import __version__
@@ -26,8 +27,11 @@ sagira_bot = SagiraBot(
     activity=discord.Game(name=f"Help: {Config.prefix}help")
 )
 
-logger.info("Adding cog: ScheduleCog")
-sagira_bot.add_cog(ScheduleCog(sagira_bot))
+# TODO: automatically import cogs without having to add here
+cogs = [ScheduleCog, RaidReportCog]
+for cog in cogs:
+    logger.info(f"Adding cog: {cog.__name__}")
+    sagira_bot.add_cog(cog(sagira_bot))
 
 logger.info(f"Running Sagira v{__version__}")
 sagira_bot.run(Config.token)
