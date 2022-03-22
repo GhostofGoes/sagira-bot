@@ -2,9 +2,14 @@ from distutils.util import strtobool
 from os import environ
 from typing import NamedTuple
 
+# If testing locally (not in Docker), load environment variables from .env file
+try:
+    import dotenv
+    dotenv.load_dotenv()
+except ModuleNotFoundError:
+    pass
 
-# Note: pipenv automatically loads variables from .env
-# when using "pipenv run start"
+
 class Config(NamedTuple):
     prefix = environ.get("SAGIRA_PREFIX", "!")
     token = environ["SAGIRA_TOKEN"]
