@@ -1,0 +1,85 @@
+[tool.poetry]
+name = "sagira-bot"
+version = "0.1.0"
+description = "Discord Bot providing statistics and other tools for Destiny 2"
+authors = ["Christopher Goes <ghostofgoes@gmail.com>"]
+license = "Apache 2.0"
+keywords = ["bot", "bungie", "destiny", "destiny2", "discord"]
+readme = "README.md"
+homepage = "https://github.com/GhostofGoes/sagira-bot"
+repository = "https://github.com/GhostofGoes/sagira-bot"
+classifiers = [
+    "Development Status :: 2 - Pre-Alpha",
+    "Environment :: Web Environment",
+    "License :: OSI Approved :: Apache Software License",
+    "Operating System :: Microsoft :: Windows",
+    "Operating System :: POSIX",
+    "Programming Language :: Python",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.9",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: Implementation :: CPython",
+    "Programming Language :: Python :: Implementation :: PyPy",
+    "Intended Audience :: Developers",
+    "Topic :: Games/Entertainment",
+    "Topic :: Games/Entertainment :: First Person Shooters",
+    "Topic :: Communications",
+    "Topic :: Communications :: Chat",
+    "Topic :: Internet",
+    "Topic :: Internet :: WWW/HTTP",
+    "Typing :: Typed",
+    "Natural Language :: English",
+]
+
+[tools.poetry.urls]
+"Changelog" = "https://github.com/GhostofGoes/sagira-bot/blob/main/CHANGELOG.md"
+"Issue tracker" = "https://github.com/GhostofGoes/sagira-bot/issues"
+
+[tool.poetry.dependencies]
+python = "^3.9"
+loguru = "~0.6.0"
+uvloop = { version = "~0.16.0", sys_platform = "!= 'win32'" }
+
+[tool.poetry.dev-dependencies]
+black = "^22.1.0"
+check-manifest = "^0.47"
+codespell = "^2.1.0"
+flake8 = "^4.0.1"
+flake8-bugbear = "^22.1.11"
+flake8-import-order = "^0.18.1"
+flake8-tidy-imports = "^4.6.0"
+flake8-print = "^4.0.0"
+flake8-builtins = "^1.5.3"
+flake8-blind-except = "^0.2.0"
+flake8-comprehensions = "^3.8.0"
+flake8-debugger = "^4.0.0"
+pep8-naming = "^0.12.1"
+flake8-string-format = "^0.3.0"
+flake8-broken-line = "^0.4.0"
+flake8-mutable = "^1.2.0"
+flake8-pytest-style = "^1.6.0"
+flake8-annotations = "^2.7.0"
+flake8-black = "^0.3.2"
+flake8-mypy = "^17.8.0"
+flake8-docstrings = "^1.6.0"
+bandit = "^1.7.4"
+vulture = "^2.3"
+pytest = "^7.0.1"
+pytest-randomly = "^3.11.0"
+pytest-mock = "^3.7.0"
+pytest-cov = "^3.0.0"
+Sphinx = "^4.4.0"
+furo = "^2022.3.4"
+pre-commit = "~2.17.0"
+
+[too.poetry.scripts]
+start = "python -m bot"
+lint = "pre-commit run --all-files"
+precommit = "pre-commit install"
+build = "docker build -t ghostofgoes/sagira-bot:latest -f Dockerfile ."
+push = "docker push ghostofgoes/sagira-bot:latest"
+
+[build-system]
+requires = ["poetry-core>=1.0.0"]
+build-backend = "poetry.core.masonry.api"
