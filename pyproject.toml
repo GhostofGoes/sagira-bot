@@ -38,8 +38,12 @@ classifiers = [
 
 [tool.poetry.dependencies]
 python = "^3.9"
-loguru = "~0.6.0"
-uvloop = { version = "~0.16.0", sys_platform = "!= 'win32'" }
+"discord.py" = { git = "https://github.com/Rapptz/discord.py.git", rev = "eca472759338d87ad616a44191b7a2ccf55bbabf" }
+loguru = "^0.6.0"
+uvloop = { version = "^0.16.0", markers = "sys_platform != 'win32'" }
+aiobungie = { version = "^0.2.5", allow-prereleases = true }
+motor = "^2.5.1"
+# TODO: elasticsearch
 
 [tool.poetry.dev-dependencies]
 black = "^22.1.0"
@@ -71,14 +75,19 @@ pytest-mock = "^3.7.0"
 pytest-cov = "^3.0.0"
 Sphinx = "^4.4.0"
 furo = "^2022.3.4"
-pre-commit = "~2.17.0"
+pre-commit = "~=2.17.0"
+python-dotenv = "~=0.19.2"
+taskipy = "~=1.10.1"
 
-[too.poetry.scripts]
+[tool.taskipy.tasks]
 start = "python -m bot"
 lint = "pre-commit run --all-files"
 precommit = "pre-commit install"
 build = "docker build -t ghostofgoes/sagira-bot:latest -f Dockerfile ."
 push = "docker push ghostofgoes/sagira-bot:latest"
+test-nocov = "pytest -n auto"
+test = "pytest -n auto --cov-report= --cov --ff"
+retest = "pytest -n auto --cov-report= --cov --lf"
 
 [build-system]
 requires = ["poetry-core>=1.0.0"]
