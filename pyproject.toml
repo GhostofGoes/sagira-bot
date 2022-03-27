@@ -3,7 +3,7 @@ name = "sagira-bot"
 version = "0.1.0"
 description = "Discord Bot providing statistics and other tools for Destiny 2"
 authors = ["Christopher Goes <ghostofgoes@gmail.com>"]
-license = "Apache 2.0"
+license = "MIT"
 keywords = ["bot", "bungie", "destiny", "destiny2", "discord"]
 readme = "README.md"
 homepage = "https://github.com/GhostofGoes/sagira-bot"
@@ -11,7 +11,7 @@ repository = "https://github.com/GhostofGoes/sagira-bot"
 classifiers = [
     "Development Status :: 2 - Pre-Alpha",
     "Environment :: Web Environment",
-    "License :: OSI Approved :: Apache Software License",
+    "License :: OSI Approved :: MIT License",
     "Operating System :: Microsoft :: Windows",
     "Operating System :: POSIX",
     "Programming Language :: Python",
