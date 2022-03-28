@@ -1,3 +1,8 @@
+# Manifest cache
+manifest.json
+manifest_version.txt
+
+
 .idea/
 .vscode/
 .vagrant/

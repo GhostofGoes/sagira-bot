@@ -1,6 +1,7 @@
 from distutils.util import strtobool
 from os import environ
-from typing import NamedTuple
+from typing import List
+from pathlib import Path
 
 # If testing locally (not in Docker), load environment variables from .env file
 try:
@@ -10,13 +11,20 @@ except ModuleNotFoundError:
     pass
 
 
-class Config(NamedTuple):
-    prefix = environ.get("COMMAND_PREFIX", "!")
-    discord_token = environ["DISCORD_TOKEN"]
-    debug = strtobool(environ.get("DEBUG", "false").lower())
-    bungie_api_key = environ.get("BUNGIE_API_KEY", "")
-    bungie_oauth_client_id = environ.get("BUNGIE_OAUTH_CLIENT_ID", "")
-    bungie_oauth_client_secret = environ.get("BUNGIE_OAUTH_CLIENT_SECRET", "")
+class Config:
+    prefix: str = environ.get("COMMAND_PREFIX", "!")
+    discord_token: str = environ["DISCORD_TOKEN"]
+    debug: str = strtobool(environ.get("DEBUG", "false").lower())
+    bungie_api_key: str = environ.get("BUNGIE_API_KEY", "")
+    bungie_oauth_client_id: str = environ.get("BUNGIE_OAUTH_CLIENT_ID", "")
+    bungie_oauth_client_secret: str = environ.get("BUNGIE_OAUTH_CLIENT_SECRET", "")
+
+
+class Vars:
+    manifest_json_path: Path = Path.cwd() / "manifest.json"
+    manifest_version: str = ""
+    manifest_version_path: Path = Path.cwd() / "manifest_version.txt"
+
 
 class Colours:
     blue: int = 0x0279fd
@@ -32,24 +40,24 @@ class Colours:
 
 
 class Links:
-    github_url = "https://github.com/GhostofGoes/sagira-bot"
-    github_avatar_url = "https://avatars1.githubusercontent.com/u/9919"
-    sagira_wiki = "https://www.destinypedia.com/Sagira"
+    github_url: str = "https://github.com/GhostofGoes/sagira-bot"
+    github_avatar_url: str = "https://avatars1.githubusercontent.com/u/9919"
+    sagira_wiki: str = "https://www.destinypedia.com/Sagira"
 
 
 # https://en.wikiquote.org/wiki/Destiny_2
-ERROR_REPLIES = [
+ERROR_REPLIES: List[str] = [
     "Ow!",
     "Yeah, that wasn't supposed to happen...",
 ]
 
-NEGATIVE_REPLIES = [
+NEGATIVE_REPLIES: List[str] = [
     "Need help? Again?",
     "Ominous rocks, killer robots, people in mortal danger... seriously, aren't you tired of this?",
     "I'm sorry Dave, I'm afraid I can't do that.",
 ]
 
-POSITIVE_REPLIES = [
+POSITIVE_REPLIES: List[str] = [
     "You're welcome.",
     "Great!",
     "That worked",

@@ -5,7 +5,7 @@ import discord
 from loguru import logger
 
 from bot.bot import SagiraBot
-from bot.constants import Config
+from bot.constants import Config, Vars
 from bot.utils import walk_cogs
 from bot import __version__
 
@@ -36,7 +36,9 @@ async def main():
     )
 
     async with sagira_bot:
-        # client = aiobungie.Client(Config.bungie_api_key)
+        # Connect to Bungie API
+        client = aiobungie.Client(Config.bungie_api_key)
+
         # clan = await client.fetch_clan("Literally The Coolest")
         # members = await clan.fetch_members()
         # # Filter the results to return only steam members from the clan.
@@ -46,10 +48,37 @@ async def main():
         #         components=[aiobungie.ComponentType.CHARACTERS]
         #     )
         #     print(profile.characters)
-        # exit(1)
 
+        # Download Manifest file (~334MB JSON file)
+        # (there's also a SQLite version that may be slightly smaller)
+        # This file has all of the item definitions for everything in the game
+        # short version: the API returns references to items as hashes
+        # The manifest is used to lookup the hashes and get actual information, 
+        # such as the item name, description, and icon.
+        # Further reading: https://github.com/Bungie-net/api/wiki/Obtaining-Destiny-Definitions-%22The-Manifest%22
+        # Cache manifest file, only download if there's a newer version
+        if Vars.manifest_version_path.is_file():
+            logger.info(f"Reading cached manifest version from {Vars.manifest_version_path}")
+            Vars.manifest_version = Vars.manifest_version_path.read_text()
+        latest_manifest_version = await client.rest.fetch_manifest_version()
+        logger.info(f"Latest manifest version: {latest_manifest_version}")
+        logger.info(f"Current manifest version: {Vars.manifest_version}")
+        if latest_manifest_version != Vars.manifest_version:
+            logger.info(
+                f"Latest manifest version '{latest_manifest_version}' does not match cached "
+                f"manifest version '{Vars.manifest_version}' or the manifest file hasn't been "
+                f"downloaded yet, downloading a fresh manifest file from Bungie..."
+            )
+            await client.rest.download_json_manifest()
+            logger.info("Finished downloading updated manifest file, writing version to cache file...")
+            Vars.manifest_version_path.write_text(latest_manifest_version)
+        Vars.manifest_version = latest_manifest_version
+        logger.info(f"Manifest path: {Vars.manifest_json_path}")
+
+        # exit(0)
 
         # Import all cogs
+        # https://discordpy.readthedocs.io/en/latest/ext/commands/cogs.html#quick-example
         for cog in walk_cogs():
             logger.info(f"Loading cog: {cog}")
             await sagira_bot.load_extension(cog)
