@@ -11,10 +11,12 @@ except ModuleNotFoundError:
 
 
 class Config(NamedTuple):
-    prefix = environ.get("SAGIRA_PREFIX", "!")
-    token = environ["SAGIRA_TOKEN"]
-    debug = strtobool(environ.get("SAGIRA_DEBUG", "false").lower())
-
+    prefix = environ.get("COMMAND_PREFIX", "!")
+    discord_token = environ["DISCORD_TOKEN"]
+    debug = strtobool(environ.get("DEBUG", "false").lower())
+    bungie_api_key = environ.get("BUNGIE_API_KEY", "")
+    bungie_oauth_client_id = environ.get("BUNGIE_OAUTH_CLIENT_ID", "")
+    bungie_oauth_client_secret = environ.get("BUNGIE_OAUTH_CLIENT_SECRET", "")
 
 class Colours:
     blue: int = 0x0279fd

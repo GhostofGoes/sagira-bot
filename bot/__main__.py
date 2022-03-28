@@ -42,7 +42,7 @@ async def main():
         
         # Run the bot
         logger.info(f"Running Sagira v{__version__}")
-        await sagira_bot.start(Config.token)
+        await sagira_bot.start(Config.discord_token)
 
 
 asyncio.run(main())

@@ -17,19 +17,22 @@ Sagira, yet another Destiny 2 Discord Bot with a focus on statistics and adding 
 1. Setup a Discord server for testing (or use dedicated channel on an existing server) and add the bot to it
 1. Create a `.env` file in this folder with the bot token. Change debug or command prefix if desired.
     ```
-    SAGIRA_TOKEN="<token>"
-    SAGIRA_DEBUG=true
-    SAGIRA_PREFIX="!"
+    DISCORD_TOKEN="<token>"
+    DEBUG=true
+    COMMAND_PREFIX="!"
+    BUNGIE_API_KEY="<api-key"
+    BUNGIE_OAUTH_CLIENT_ID="<oauth-client-id>"
+    BUNGIE_OAUTH_CLIENT_SECRET="<oauth-client-secret>"
     ```
 
-1. Start services
+2. Start services
     ```bash
     docker-compose up -d db
     # Watch logs and wait for services to finish starting
     docker-compose logs -f --since 1m
     ```
 
-1. Run the bot
+3. Run the bot
     ```bash
     poetry run task start
     ```
