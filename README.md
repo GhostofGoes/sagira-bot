@@ -31,7 +31,7 @@ Sagira, yet another Destiny 2 Discord Bot with a focus on statistics and adding 
 
 1. Run the bot
     ```bash
-    poetry run start
+    poetry run task start
     ```
 
 
