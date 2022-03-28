@@ -1,12 +1,13 @@
+import asyncio
+
 import discord
 from loguru import logger
 
-from bot.utils import walk_cogs
 from bot.bot import SagiraBot
-from bot.cogs.raid_report import RaidReportCog
-from bot.cogs.schedule import ScheduleCog
 from bot.constants import Config
-from . import __version__
+from bot.utils import walk_cogs
+from bot import __version__
+
 
 # Faster asyncio loop (not available on Windows)
 # https://github.com/MagicStack/uvloop
@@ -17,30 +18,34 @@ try:
 except ImportError:
     logger.info("Using vanilla asyncio loop")
 
-logger.info(
-    f"Initializing Sagira\n"
-    f"Version: {__version__}\n"
-    f"Prefix: {Config.prefix}\n"
-    f"DEBUG: {Config.debug}"
-)
-sagira_bot = SagiraBot(
-    command_prefix=Config.prefix,
-    activity=discord.Game(name=f"Help: {Config.prefix}help")
-)
+
+# Discord.py 2.0 added async support
+#   https://stackoverflow.com/a/71504716
+#   https://gist.github.com/Rapptz/6706e1c8f23ac27c98cee4dd985c8120
+async def main():
+    logger.info(
+        f"Initializing Sagira\n"
+        f"Version: {__version__}\n"
+        f"Prefix: {Config.prefix}\n"
+        f"DEBUG: {Config.debug}"
+    )
+    sagira_bot = SagiraBot(
+        command_prefix=Config.prefix,
+        activity=discord.Game(name=f"Help: {Config.prefix}help")
+    )
+
+    async with sagira_bot:
+        # Import all cogs
+        for cog in walk_cogs():
+            logger.info(f"Loading cog: {cog}")
+            await sagira_bot.load_extension(cog)
+        
+        # Run the bot
+        logger.info(f"Running Sagira v{__version__}")
+        await sagira_bot.start(Config.token)
 
 
-# Add all cogs
-for cog in walk_cogs():
-    logger.info(f"Adding cog: {cog.__name__}")
-    sagira_bot.add_cog(cog(sagira_bot))
-# cogs = [ScheduleCog, RaidReportCog]
-# for cog in cogs:
-#     logger.info(f"Adding cog: {cog.__name__}")
-#     sagira_bot.add_cog(cog(sagira_bot))
-
-
-logger.info(f"Running Sagira v{__version__}")
-sagira_bot.run(Config.token)
+asyncio.run(main())
 
 
 # import os

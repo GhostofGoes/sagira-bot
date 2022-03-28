@@ -64,5 +64,5 @@ class RaidReportCog(Cog):
         await ctx.send(embed=embed)
 
 
-def setup(bot) -> None:
-    bot.add_cog(RaidReportCog(bot))
+async def setup(bot) -> None:
+    await bot.add_cog(RaidReportCog(bot))

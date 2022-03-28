@@ -42,5 +42,5 @@ class ScheduleCog(Cog):
             await message.add_reaction(emoji=f"{var}")
 
 
-def setup(bot) -> None:
-    bot.add_cog(ScheduleCog(bot))
+async def setup(bot) -> None:
+    await bot.add_cog(ScheduleCog(bot))
