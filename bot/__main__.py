@@ -1,4 +1,5 @@
 import asyncio
+import json
 
 import aiobungie
 import discord
@@ -74,6 +75,10 @@ async def main():
             Vars.manifest_version_path.write_text(latest_manifest_version)
         Vars.manifest_version = latest_manifest_version
         logger.info(f"Manifest path: {Vars.manifest_json_path}")
+
+        # Read the manifest into a dict
+        Vars.manifest = json.loads(Vars.manifest_json_path.read_text())
+        # print(list(Vars.manifest.keys()))
 
         # exit(0)
 

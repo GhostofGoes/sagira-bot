@@ -24,6 +24,7 @@ class Vars:
     manifest_json_path: Path = Path.cwd() / "manifest.json"
     manifest_version: str = ""
     manifest_version_path: Path = Path.cwd() / "manifest_version.txt"
+    manifest: dict = {}
 
 
 class Colours:
