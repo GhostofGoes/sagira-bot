@@ -24,16 +24,16 @@ services:
     volumes:
       - bot_log:/sagira/log
       - bot_data:/sagira/data
-  db:
-    <<: *service-base
-    image: "mongo:4.4-bionic"
-    container_name: db
-    environment:
-      - MONGO_INITDB_ROOT_USERNAME=$MONGO_USERNAME
-      - MONGO_INITDB_ROOT_PASSWORD=$MONGO_PASSWORD
-      - MONGO_HOSTNAME=db
-    volumes:
-      - dbdata:/data/db
+  # db:
+  #   <<: *service-base
+  #   image: "mongo:4.4-bionic"
+  #   container_name: db
+  #   environment:
+  #     - MONGO_INITDB_ROOT_USERNAME=$MONGO_USERNAME
+  #     - MONGO_INITDB_ROOT_PASSWORD=$MONGO_PASSWORD
+  #     - MONGO_HOSTNAME=db
+  #   volumes:
+  #     - dbdata:/data/db
 
 networks:
   db-net:

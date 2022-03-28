@@ -1,5 +1,6 @@
 import asyncio
 
+import aiobungie
 import discord
 from loguru import logger
 
@@ -26,8 +27,8 @@ async def main():
     logger.info(
         f"Initializing Sagira\n"
         f"Version: {__version__}\n"
-        f"Prefix: {Config.prefix}\n"
-        f"DEBUG: {Config.debug}"
+        f"Prefix:  {Config.prefix}\n"
+        f"Debug:   {Config.debug}"
     )
     sagira_bot = SagiraBot(
         command_prefix=Config.prefix,
@@ -35,6 +36,19 @@ async def main():
     )
 
     async with sagira_bot:
+        # client = aiobungie.Client(Config.bungie_api_key)
+        # clan = await client.fetch_clan("Literally The Coolest")
+        # members = await clan.fetch_members()
+        # # Filter the results to return only steam members from the clan.
+        # for member in members.filter(lambda m: m.type is aiobungie.MembershipType.STEAM):
+        #     # Get the profile for this clan member.
+        #     profile = await member.fetch_self_profile(
+        #         components=[aiobungie.ComponentType.CHARACTERS]
+        #     )
+        #     print(profile.characters)
+        # exit(1)
+
+
         # Import all cogs
         for cog in walk_cogs():
             logger.info(f"Loading cog: {cog}")

@@ -41,7 +41,8 @@ python = "^3.9"
 "discord.py" = { git = "https://github.com/Rapptz/discord.py.git", rev = "eca472759338d87ad616a44191b7a2ccf55bbabf" }
 loguru = "^0.6.0"
 uvloop = { version = "^0.16.0", markers = "sys_platform != 'win32'" }
-aiobungie = { version = "^0.2.5", allow-prereleases = true }
+# aiobungie = { version = "^0.2.5", allow-prereleases = true }
+aiobungie = { git = "https://github.com/nxtlo/aiobungie.git", branch = "master" }
 motor = "^2.5.1"
 # TODO: elasticsearch
 
