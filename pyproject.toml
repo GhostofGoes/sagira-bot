@@ -20,7 +20,6 @@ classifiers = [
     "Programming Language :: Python :: 3.10",
     "Programming Language :: Python :: 3.11",
     "Programming Language :: Python :: Implementation :: CPython",
-    "Programming Language :: Python :: Implementation :: PyPy",
     "Intended Audience :: Developers",
     "Topic :: Games/Entertainment",
     "Topic :: Games/Entertainment :: First Person Shooters",
@@ -38,7 +37,7 @@ classifiers = [
 
 [tool.poetry.dependencies]
 python = "^3.9"
-"discord.py" = { git = "https://github.com/Rapptz/discord.py.git", rev = "eca472759338d87ad616a44191b7a2ccf55bbabf" }
+"discord.py" = { git = "https://github.com/Rapptz/discord.py.git", rev = "4ce60b4cacaa7ab7fd6186f48c73bba6d09ad6a8" }
 loguru = "^0.6.0"
 uvloop = { version = "^0.16.0", markers = "sys_platform != 'win32'" }
 # aiobungie = { version = "^0.2.5", allow-prereleases = true }
