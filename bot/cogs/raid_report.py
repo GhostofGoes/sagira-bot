@@ -1,6 +1,6 @@
-from discord import Colour, Embed
+import discord
 from discord.ext import commands
-from discord.ext.commands import Cog
+
 
 # TODO: for all commands, accept a user_id parameter
 #   If not specified and user is registered, then we use the registered user's id
@@ -8,8 +8,8 @@ from discord.ext.commands import Cog
 #   If specified, use as the ID (How do we handle platforms? is a ID universal?)
 
 
-class RaidReportCog(Cog):
-    def __init__(self, bot):
+class RaidReportCog(commands.Cog):
+    def __init__(self, bot: commands.Bot) -> None:
         self.bot = bot
 
     @commands.command(name="raidreport", aliases=("rr",))
@@ -42,10 +42,10 @@ class RaidReportCog(Cog):
             date of latest raid attempt (any raid)
         """
 
-        embed = Embed(
+        embed = discord.Embed(
             title=f"insert_destiny_name ({ctx.message.author.display_name})",
             description="",
-            colour=Colour.green()
+            colour=discord.Colour.green()
         )
         # raid.report will auto-correct a name on "/pc" to proper URL...so whatevs
         embed.add_field(
