@@ -6,7 +6,7 @@ from typing import NoReturn
 
 from discord.ext.commands import Context
 
-from bot import cogs
+from sagira import cogs
 
 
 # SOURCE: python-discord/sir-lancebot

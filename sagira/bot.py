@@ -2,8 +2,8 @@ import discord
 from discord.ext.commands import Bot
 from loguru import logger
 
-from bot.constants import Config
-from bot.utils import walk_cogs
+from sagira.constants import Config
+from sagira.utils import walk_cogs
 
 
 class SagiraBot(Bot):

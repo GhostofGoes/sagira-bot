@@ -5,9 +5,9 @@ import aiobungie
 import discord
 from loguru import logger
 
-from bot import __version__
-from bot.bot import SagiraBot
-from bot.constants import Config, Vars
+from sagira import __version__
+from sagira.bot import SagiraBot
+from sagira.constants import Config, Vars
 
 
 # Faster asyncio loop (not available on Windows)

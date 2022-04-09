@@ -80,7 +80,7 @@ python-dotenv = "~=0.19.2"
 taskipy = "~=1.10.1"
 
 [tool.taskipy.tasks]
-start = "python -m bot"
+start = "python -m sagira"
 lint = "pre-commit run --all-files"
 precommit = "pre-commit install"
 build = "docker build -t ghostofgoes/sagira-bot:latest -f Dockerfile ."

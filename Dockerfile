@@ -28,7 +28,7 @@ COPY . .
 # TODO: add HEALTHCHECK
 
 ENTRYPOINT ["python3"]
-CMD ["-m", "bot"]
+CMD ["-m", "sagira"]
 
 # Define docker persistent volumes
 VOLUME /sagira/log /sagira/data

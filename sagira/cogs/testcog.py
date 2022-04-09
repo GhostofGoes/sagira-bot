@@ -2,7 +2,7 @@ import discord
 from discord import app_commands
 from discord.ext import commands
 
-from bot.constants import Config
+from sagira.constants import Config
 
 
 # from discord import ui
