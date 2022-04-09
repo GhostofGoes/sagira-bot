@@ -9,37 +9,27 @@ x-service-base: &service-base
       max-size: "1m"
       max-file: "10"
   networks:
-    - db-net
+    - es-net
 
 services:
-  sagira:
+  bot:
     <<: *service-base
     image: "ghostofgoes/sagira-bot:latest"
     build:
       context: .
       dockerfile: Dockerfile
       cache_from: ["ghostofgoes/sagira-bot:latest"]
-    container_name: sagira
+    container_name: bot
     init: true
     volumes:
       - bot_log:/sagira/log
       - bot_data:/sagira/data
-  # db:
-  #   <<: *service-base
-  #   image: "mongo:4.4-bionic"
-  #   container_name: db
-  #   environment:
-  #     - MONGO_INITDB_ROOT_USERNAME=$MONGO_USERNAME
-  #     - MONGO_INITDB_ROOT_PASSWORD=$MONGO_PASSWORD
-  #     - MONGO_HOSTNAME=db
-  #   volumes:
-  #     - dbdata:/data/db
+  # TODO: add elastic
 
 networks:
-  db-net:
+  es-net:
     driver: bridge
 
 volumes:
-  dbdata:
   bot_log:
   bot_data:

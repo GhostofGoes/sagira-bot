@@ -42,7 +42,6 @@ loguru = "^0.6.0"
 uvloop = { version = "^0.16.0", markers = "sys_platform != 'win32'" }
 # aiobungie = { version = "^0.2.5", allow-prereleases = true }
 aiobungie = { git = "https://github.com/nxtlo/aiobungie.git", branch = "master" }
-motor = "^2.5.1"
 # TODO: elasticsearch
 
 [tool.poetry.dev-dependencies]
