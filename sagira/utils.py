@@ -4,8 +4,6 @@ import pkgutil
 from collections.abc import Iterator
 from typing import NoReturn
 
-from discord.ext.commands import Context
-
 from sagira import cogs
 
 
@@ -34,5 +32,6 @@ def walk_cogs() -> Iterator[str]:
                 continue
 
         yield module.name
+
 
 COGS = frozenset(walk_cogs())

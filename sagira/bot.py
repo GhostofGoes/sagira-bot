@@ -3,14 +3,14 @@ from discord.ext.commands import Bot
 from loguru import logger
 
 from sagira.constants import Config
-from sagira.utils import walk_cogs
+from sagira.utils import COGS
 
 
 class SagiraBot(Bot):
     async def setup_hook(self) -> None:
         # Import all cogs
         logger.info("Loading cogs...")
-        for cog in walk_cogs():
+        for cog in COGS:
             logger.info(f"Loading cog: {cog}")
             await self.load_extension(cog)
         logger.info("Finished loading cogs")
