@@ -6,7 +6,14 @@ ENV PIP_NO_CACHE_DIR=false \
     POETRY_VIRTUALENVS_CREATE=false
 
 # Install poetry
-RUN pip install -U poetry
+RUN python -m pip install -U pip \
+    && pip install -U setuptools wheel \
+    && apt-get update \
+    && apt-get install -y curl python3-dev git \
+    && curl -sSL https://raw.githubusercontent.com/python-poetry/poetry/master/get-poetry.py | python - \
+    && apt-get clean \
+    && rm -rf /var/lib/apt/lists/*
+ENV PATH="${PATH}:/root/.poetry/bin"
 
 # Copy the project files into working directory
 WORKDIR /sagira
