@@ -28,7 +28,7 @@ Sagira, yet another Destiny 2 Discord Bot with a focus on statistics and adding 
 
     # ID of the Discord server to run bot in
     DISCORD_GUILD_ID="<server-id>"
-    
+
     BUNGIE_API_KEY="<api-key"
     BUNGIE_OAUTH_CLIENT_ID="<oauth-client-id>"
     BUNGIE_OAUTH_CLIENT_SECRET="<oauth-client-secret>"
