@@ -17,9 +17,17 @@ Sagira, yet another Destiny 2 Discord Bot with a focus on statistics and adding 
 1. Setup a Discord server for testing (or use dedicated channel on an existing server) and add the bot to it
 1. Create a `.env` file in this folder with the bot token. Change debug or command prefix if desired.
     ```
-    DISCORD_TOKEN="<token>"
-    DEBUG=true
     COMMAND_PREFIX="!"
+    DEBUG=true
+
+    # These fields come from the Discord application page
+    DISCORD_TOKEN="<token>"
+    DISCORD_APP_ID="<app-id>"
+    DISCORD_PUBLIC_KEY="<public-key>"
+
+    # ID of the Discord server to run bot in
+    DISCORD_GUILD_ID="<server-id>"
+    
     BUNGIE_API_KEY="<api-key"
     BUNGIE_OAUTH_CLIENT_ID="<oauth-client-id>"
     BUNGIE_OAUTH_CLIENT_SECRET="<oauth-client-secret>"
@@ -27,9 +35,9 @@ Sagira, yet another Destiny 2 Discord Bot with a focus on statistics and adding 
 
 2. Start services
     ```bash
-    docker-compose up -d db
+    docker-compose up -d
     # Watch logs and wait for services to finish starting
-    docker-compose logs -f --since 1m
+    docker-compose logs -f
     ```
 
 3. Run the bot

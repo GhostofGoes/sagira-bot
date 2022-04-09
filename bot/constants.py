@@ -13,8 +13,11 @@ except ModuleNotFoundError:
 
 class Config:
     prefix: str = environ.get("COMMAND_PREFIX", "!")
-    discord_token: str = environ["DISCORD_TOKEN"]
     debug: str = strtobool(environ.get("DEBUG", "false").lower())
+    discord_token: str = environ["DISCORD_TOKEN"]
+    discord_app_id: str = environ["DISCORD_APP_ID"]
+    discord_public_key: str = environ["DISCORD_PUBLIC_KEY"]
+    discord_guild_id: str = environ["DISCORD_GUILD_ID"]
     bungie_api_key: str = environ.get("BUNGIE_API_KEY", "")
     bungie_oauth_client_id: str = environ.get("BUNGIE_OAUTH_CLIENT_ID", "")
     bungie_oauth_client_secret: str = environ.get("BUNGIE_OAUTH_CLIENT_SECRET", "")

@@ -27,13 +27,16 @@ except ImportError:
 async def main():
     logger.info(
         f"Initializing Sagira\n"
-        f"Version: {__version__}\n"
-        f"Prefix:  {Config.prefix}\n"
-        f"Debug:   {Config.debug}"
+        f"Discord version: {discord.__version__}\n"
+        f"Sagira version: {__version__}\n"
+        f"Prefix: {Config.prefix}\n"
+        f"Debug: {Config.debug}"
     )
     sagira_bot = SagiraBot(
         command_prefix=Config.prefix,
-        activity=discord.Game(name=f"Help: {Config.prefix}help")
+        activity=discord.Game(name=f"Help: {Config.prefix}help"),
+        application_id=Config.discord_app_id,
+        intents=discord.Intents.all(),
     )
 
     async with sagira_bot:
@@ -54,7 +57,7 @@ async def main():
         # (there's also a SQLite version that may be slightly smaller)
         # This file has all of the item definitions for everything in the game
         # short version: the API returns references to items as hashes
-        # The manifest is used to lookup the hashes and get actual information, 
+        # The manifest is used to lookup the hashes and get actual information,
         # such as the item name, description, and icon.
         # Further reading: https://github.com/Bungie-net/api/wiki/Obtaining-Destiny-Definitions-%22The-Manifest%22
         # Cache manifest file, only download if there's a newer version
@@ -87,7 +90,7 @@ async def main():
         for cog in walk_cogs():
             logger.info(f"Loading cog: {cog}")
             await sagira_bot.load_extension(cog)
-        
+
         # Run the bot
         logger.info(f"Running Sagira v{__version__}")
         await sagira_bot.start(Config.discord_token)
