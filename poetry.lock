@@ -178,7 +178,7 @@ virtualenv = ["virtualenv (>=20.0.35)"]
 name = "certifi"
 version = "2021.10.8"
 description = "Python package for providing Mozilla's CA Bundle."
-category = "dev"
+category = "main"
 optional = false
 python-versions = "*"
 
@@ -300,6 +300,37 @@ description = "Docutils -- Python Documentation Utilities"
 category = "dev"
 optional = false
 python-versions = ">=2.7, !=3.0.*, !=3.1.*, !=3.2.*, !=3.3.*, !=3.4.*"
+
+[[package]]
+name = "elastic-transport"
+version = "8.1.1"
+description = "Transport classes and utilities shared among Python Elastic client libraries"
+category = "main"
+optional = false
+python-versions = ">=3.6"
+
+[package.dependencies]
+certifi = "*"
+urllib3 = ">=1.26.2,<2"
+
+[package.extras]
+develop = ["pytest", "pytest-cov", "pytest-mock", "pytest-asyncio", "mock", "requests", "aiohttp"]
+
+[[package]]
+name = "elasticsearch"
+version = "8.1.2"
+description = "Python client for Elasticsearch"
+category = "main"
+optional = false
+python-versions = ">=3.6, <4"
+
+[package.dependencies]
+aiohttp = {version = ">=3,<4", optional = true, markers = "extra == \"async\""}
+elastic-transport = ">=8,<9"
+
+[package.extras]
+async = ["aiohttp (>=3,<4)"]
+requests = ["requests (>=2.4.0,<3.0.0)"]
 
 [[package]]
 name = "filelock"
@@ -1188,7 +1219,7 @@ python-versions = ">=3.6"
 name = "urllib3"
 version = "1.26.9"
 description = "HTTP library with thread-safe connection pooling, file post, and more."
-category = "dev"
+category = "main"
 optional = false
 python-versions = ">=2.7, !=3.0.*, !=3.1.*, !=3.2.*, !=3.3.*, !=3.4.*, <4"
 
@@ -1277,7 +1308,7 @@ testing = ["pytest (>=6)", "pytest-checkdocs (>=2.4)", "pytest-flake8", "pytest-
 [metadata]
 lock-version = "1.1"
 python-versions = "^3.9"
-content-hash = "aa19ae274d846ec91d5d695b033c3d5f8812b0438d6e7a4168db712d7521e591"
+content-hash = "b082e90c7c7300c6b7a429c101641325c4542cf5b05164ea0b0a25e39916ed9e"
 
 [metadata.files]
 aiobungie = []
@@ -1495,6 +1526,14 @@ distlib = [
 docutils = [
     {file = "docutils-0.17.1-py2.py3-none-any.whl", hash = "sha256:cf316c8370a737a022b72b56874f6602acf974a37a9fba42ec2876387549fc61"},
     {file = "docutils-0.17.1.tar.gz", hash = "sha256:686577d2e4c32380bb50cbb22f575ed742d58168cee37e99117a854bcd88f125"},
+]
+elastic-transport = [
+    {file = "elastic-transport-8.1.1.tar.gz", hash = "sha256:f1a5274e1eb1831f73947fbc4ae9aba142f739e600e0cf47ad5ed08cd04e401e"},
+    {file = "elastic_transport-8.1.1-py3-none-any.whl", hash = "sha256:2ee1ec56ccfad1354a36056fa942af726510fffba46b267292ba7d584a1bd406"},
+]
+elasticsearch = [
+    {file = "elasticsearch-8.1.2-py3-none-any.whl", hash = "sha256:2fd3c88bc5fef259ab936538287404b2c3c5956630944563722d5b16a4edc550"},
+    {file = "elasticsearch-8.1.2.tar.gz", hash = "sha256:bf031b44c483f6dc40d607186103d8a152ce4ade96e4ed4c656f2421f794e123"},
 ]
 filelock = [
     {file = "filelock-3.6.0-py3-none-any.whl", hash = "sha256:f8314284bfffbdcfa0ff3d7992b023d4c628ced6feb957351d4c48d059f56bc0"},

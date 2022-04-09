@@ -42,7 +42,7 @@ loguru = "^0.6.0"
 uvloop = { version = "^0.16.0", markers = "sys_platform != 'win32'" }
 # aiobungie = { version = "^0.2.5", allow-prereleases = true }
 aiobungie = { git = "https://github.com/nxtlo/aiobungie.git", branch = "master" }
-# TODO: elasticsearch
+elasticsearch = {extras = ["async"], version = "^8.1.2"}
 
 [tool.poetry.dev-dependencies]
 black = "^22.1.0"

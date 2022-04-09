@@ -13,6 +13,16 @@ Basically Charlemagne's scheduler, but with more features, namely randomized loa
 - Random activity
   - for when you're bored and no one wants to pick something to do
 
+When raid is finished, have bot send a summary to all raid members of statistics from that raid (or activity), achievements, etc.
+
+Ability to select roles that are allowed to join a raid (e.g. "raid farmers").
+Ask for approval from raid leader.
+Restrict roles that can edit.
+Notifications.
+
+Record what weapons/armor/mods are equipped when users complete a raid and store it in the database for future reference.
+
+
 ## Raid report
 Nice clean "Raid report" for a given user.
 
