@@ -3,6 +3,7 @@
 import asyncio
 import json
 from logging.handlers import RotatingFileHandler
+from pathlib import Path
 
 import aiobungie
 import discord
@@ -84,8 +85,15 @@ async def main() -> None:
             f"manifest version '{Vars.manifest_version}' or the manifest file hasn't been "
             f"downloaded yet, downloading a fresh manifest file from Bungie..."
         )
+        # NOTE: aiobungie downloads manifest to "./manifest.json",
+        # and this behavior doesn't appear to be configurable
         await client.rest.download_json_manifest()
-        logger.info("Finished downloading updated manifest file, writing version to cache file...")
+        logger.info(f"Finished downloading updated manifest file, "
+                    f"moving to {Config.manifest_json_path.parent}")
+        if not Config.manifest_json_path.parent.exists():
+            Config.manifest_json_path.parent.mkdir(exist_ok=True, parents=True)
+        Path("./manifest.json").rename(Config.manifest_json_path)
+        logger.info("Writing manifest version to cache file...")
         Config.manifest_version_path.write_text(latest_manifest_version)
     Vars.manifest_version = latest_manifest_version
     logger.info(f"Manifest path: {Config.manifest_json_path}")
