@@ -20,6 +20,7 @@ class Config:
     bungie_api_key: str = environ.get("BUNGIE_API_KEY", "")
     bungie_oauth_client_id: str = environ.get("BUNGIE_OAUTH_CLIENT_ID", "")
     bungie_oauth_client_secret: str = environ.get("BUNGIE_OAUTH_CLIENT_SECRET", "")
+    elastic_host: str = environ.get("ELASTIC_HOST", "http://elasticsearch:9200")
     elastic_password: str = environ["ELASTIC_PASSWORD"]
     kibana_password: str = environ["KIBANA_PASSWORD"]
 
