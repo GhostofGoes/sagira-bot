@@ -1,7 +1,7 @@
 from distutils.util import strtobool
 from os import environ
-from typing import List
 from pathlib import Path
+from typing import List
 
 # If testing locally (not in Docker), load environment variables from .env file
 try:

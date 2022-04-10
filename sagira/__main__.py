@@ -9,7 +9,6 @@ from sagira import __version__
 from sagira.bot import SagiraBot
 from sagira.constants import Config, Vars
 
-
 # TODO: configure logging levels based on Config.debug
 
 

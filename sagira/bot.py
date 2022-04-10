@@ -1,6 +1,6 @@
 import discord
-from loguru import logger
 from discord.ext.commands import Bot
+from loguru import logger
 
 from sagira.constants import Config
 from sagira.utils import COGS
