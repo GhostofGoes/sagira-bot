@@ -4,6 +4,8 @@
 
 *.py 	    text eol=lf
 *.md        text eol=lf
+poetry.lock text eol=lf
+pyproject.toml text eol=lf
 
 # Windows
 *.ps1       text eol=crlf

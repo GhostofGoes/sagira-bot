@@ -1,12 +1,5 @@
 # Security Policy
 
-## Supported Versions
-
-| Version    | Supported          |
-| ---------- | ------------------ |
-| 0.8.x      | :white_check_mark: |
-| <= 0.7.x   | :x:                |
-
 ## Reporting a Vulnerability or other security issue
 
 If the security issue is a general weakness or poor practice that is *not directly exploitable*, please open a [Issue on GitHub](https://github.com/GhostofGoes/sagira-bot/issues) and add the `security` label.

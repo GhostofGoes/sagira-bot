@@ -1,3 +1,10 @@
 .env
 .idea
 .vscode
+.mypy_cache
+.pytest_cache
+.tox
+.venv
+venv
+manifest_version.txt
+manifest.json

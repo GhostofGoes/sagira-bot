@@ -68,7 +68,7 @@ async def main() -> None:
         logger.info(f"Reading cached manifest version from {Vars.manifest_version_path}")
         Vars.manifest_version = Vars.manifest_version_path.read_text()
     latest_manifest_version = await client.rest.fetch_manifest_version()
-    logger.info(f"Latest manifest version: {latest_manifest_version}")
+    logger.info(f"Latest manifest version:  {latest_manifest_version}")
     logger.info(f"Current manifest version: {Vars.manifest_version}")
     if latest_manifest_version != Vars.manifest_version:
         logger.info(
