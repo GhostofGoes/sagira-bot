@@ -1,3 +1,5 @@
+#!/usr/bin/env python3
+
 import asyncio
 import json
 
@@ -30,7 +32,7 @@ logger.info(
 )
 sagira_bot = SagiraBot(
     command_prefix="!",
-    activity=discord.Game(name=f"Help: !help"),
+    activity=discord.Game(name="Help: !help"),
     application_id=Config.discord_app_id,
     intents=discord.Intents.all(),
 )
@@ -39,7 +41,7 @@ sagira_bot = SagiraBot(
 # Discord.py 2.0 added async support
 #   https://stackoverflow.com/a/71504716
 #   https://gist.github.com/Rapptz/6706e1c8f23ac27c98cee4dd985c8120
-async def main():
+async def main() -> None:
     # Connect to Bungie API
     client = aiobungie.Client(Config.bungie_api_key)
 
@@ -59,7 +61,8 @@ async def main():
     # short version: the API returns references to items as hashes
     # The manifest is used to lookup the hashes and get actual information,
     # such as the item name, description, and icon.
-    # Further reading: https://github.com/Bungie-net/api/wiki/Obtaining-Destiny-Definitions-%22The-Manifest%22
+    # Further reading:
+    # https://github.com/Bungie-net/api/wiki/Obtaining-Destiny-Definitions-%22The-Manifest%22
     # Cache manifest file, only download if there's a newer version
     if Vars.manifest_version_path.is_file():
         logger.info(f"Reading cached manifest version from {Vars.manifest_version_path}")

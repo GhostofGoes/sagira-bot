@@ -23,6 +23,7 @@ class Config:
     elastic_password: str = environ["ELASTIC_PASSWORD"]
     kibana_password: str = environ["KIBANA_PASSWORD"]
 
+
 class Vars:
     logs_dir: Path = Path.cwd() / "logs"
     data_dir: Path = Path.cwd() / "data"
@@ -59,7 +60,7 @@ ERROR_REPLIES: List[str] = [
 
 NEGATIVE_REPLIES: List[str] = [
     "Need help? Again?",
-    "Ominous rocks, killer robots, people in mortal danger... seriously, aren't you tired of this?",
+    "Ominous rocks, killer robots, people in mortal danger... seriously, aren't you tired of this?",  # noqa: E501
     "I'm sorry Dave, I'm afraid I can't do that.",
 ]
 
