@@ -22,7 +22,6 @@ class Config:
     bungie_oauth_client_secret: str = environ.get("BUNGIE_OAUTH_CLIENT_SECRET", "")
     elastic_host: str = environ.get("ELASTIC_HOST", "http://elasticsearch:9200")
     elastic_password: str = environ["ELASTIC_PASSWORD"]
-    kibana_password: str = environ["KIBANA_PASSWORD"]
     log_dir: Path = Path(environ.get("LOG_DIR", "./logs")).resolve()
     data_dir: Path = Path(environ.get("DATA_DIR", "./data")).resolve()
     manifest_json_path: Path = data_dir / "manifest.json"
