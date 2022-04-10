@@ -2,17 +2,25 @@
 
 import asyncio
 import json
+import logging
 
 import aiobungie
 import discord
+import ecs_logging
 from loguru import logger
 
 from sagira import __version__
 from sagira.bot import SagiraBot
 from sagira.constants import Config, Vars
 
-# TODO: configure logging levels based on Config.debug
+# Save logs in Elastic Common Schema (ECS) format to a JSON file (JSON Lines, aka ".jsonl")
+# These logs will be ingested by Filebeat and shipped to Elasticsearch
+file_handler = logging.FileHandler(str(Vars.logs_dir / "ecs_log.jsonl"))
+file_handler.setFormatter(ecs_logging.StdlibFormatter())
+logger.add(file_handler, format="{message}")
 
+# TODO: save normal human-readable logs to file
+# TODO: log file rotation
 
 # Faster asyncio loop (not available on Windows)
 # https://github.com/MagicStack/uvloop
