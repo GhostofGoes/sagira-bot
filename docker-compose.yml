@@ -22,7 +22,7 @@ services:
     container_name: bot
     init: true
     volumes:
-      - bot_log:/sagira/log
+      - bot_logs:/sagira/logs
       - bot_data:/sagira/data
   # TODO: add elastic
 
@@ -31,5 +31,5 @@ networks:
     driver: bridge
 
 volumes:
-  bot_log:
+  bot_logs:
   bot_data:

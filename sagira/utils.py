@@ -8,20 +8,14 @@ from sagira import cogs
 
 
 # SOURCE: python-discord/sir-lancebot
-def unqualify(name: str) -> str:
-    """Return an unqualified name given a qualified module/package `name`."""
-    return name.rsplit(".", maxsplit=1)[-1]
-
-
-# SOURCE: python-discord/sir-lancebot
 def walk_cogs() -> Iterator[str]:
-    """Yield cog names from the bot.cogs subpackage."""
+    """Yield cog names from the sagira.cogs subpackage."""
 
     def on_error(name: str) -> NoReturn:
         raise ImportError(name=name)  # pragma: no cover
 
     for module in pkgutil.walk_packages(cogs.__path__, f"{cogs.__name__}.", onerror=on_error):
-        if unqualify(module.name).startswith("_"):
+        if module.name.rsplit(".", maxsplit=1)[-1].startswith("_"):
             # Ignore module/package names starting with an underscore.
             continue
 

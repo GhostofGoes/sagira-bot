@@ -25,7 +25,7 @@ RUN poetry install --no-dev --no-interaction --no-ansi
 # Copy the code after install so changes don't invalidate the earlier image layers
 COPY . .
 
-# TODO: add HEALTHCHECK
+# TODO: HEALTHCHECK
 
 ENTRYPOINT ["python3"]
 CMD ["-m", "sagira"]
