@@ -23,14 +23,14 @@ class Config:
     elastic_host: str = environ.get("ELASTIC_HOST", "http://elasticsearch:9200")
     elastic_password: str = environ["ELASTIC_PASSWORD"]
     kibana_password: str = environ["KIBANA_PASSWORD"]
+    log_dir: Path = Path(environ.get("LOG_DIR", "./logs")).resolve()
+    data_dir: Path = Path(environ.get("DATA_DIR", "./data")).resolve()
+    manifest_json_path: Path = data_dir / "manifest.json"
+    manifest_version_path: Path = data_dir / "manifest_version.txt"
 
 
 class Vars:
-    logs_dir: Path = Path.cwd() / "logs"
-    data_dir: Path = Path.cwd() / "data"
-    manifest_json_path: Path = Path.cwd() / "manifest.json"
     manifest_version: str = ""
-    manifest_version_path: Path = Path.cwd() / "manifest_version.txt"
     manifest: dict = {}
 
 
@@ -47,7 +47,7 @@ class Colours:
     yellow: int = 0xf9f586
 
 
-class Links:
+class Consts:
     github_url: str = "https://github.com/GhostofGoes/sagira-bot"
     github_avatar_url: str = "https://avatars1.githubusercontent.com/u/9919"
     sagira_wiki: str = "https://www.destinypedia.com/Sagira"

@@ -15,12 +15,12 @@ from sagira.constants import Config, Vars
 
 # Save logs in Elastic Common Schema (ECS) format to a JSON file (JSON Lines, aka ".jsonl")
 # These logs will be ingested by Filebeat and shipped to Elasticsearch
-file_handler = RotatingFileHandler(Vars.logs_dir / "ecs_log.jsonl", maxBytes=1e+7, backupCount=3)
+file_handler = RotatingFileHandler(Config.log_dir / "ecs_log.jsonl", maxBytes=1e+7, backupCount=3)
 file_handler.setFormatter(ecs_logging.StdlibFormatter())
 logger.add(file_handler, format="{message}")
 
 # Save normal human-readable logs to file
-logger.add(Vars.logs_dir / "sagira.log", rotation="10 MB", retention=5)
+logger.add(Config.log_dir / "sagira.log", rotation="10 MB", retention=5)
 
 # Faster asyncio loop (not available on Windows)
 # https://github.com/MagicStack/uvloop
@@ -72,9 +72,9 @@ async def main() -> None:
     # Further reading:
     # https://github.com/Bungie-net/api/wiki/Obtaining-Destiny-Definitions-%22The-Manifest%22
     # Cache manifest file, only download if there's a newer version
-    if Vars.manifest_version_path.is_file():
-        logger.info(f"Reading cached manifest version from {Vars.manifest_version_path}")
-        Vars.manifest_version = Vars.manifest_version_path.read_text()
+    if Config.manifest_version_path.is_file():
+        logger.info(f"Reading cached manifest version from {Config.manifest_version_path}")
+        Vars.manifest_version = Config.manifest_version_path.read_text()
     latest_manifest_version = await client.rest.fetch_manifest_version()
     logger.info(f"Latest manifest version:  {latest_manifest_version}")
     logger.info(f"Current manifest version: {Vars.manifest_version}")
@@ -86,12 +86,12 @@ async def main() -> None:
         )
         await client.rest.download_json_manifest()
         logger.info("Finished downloading updated manifest file, writing version to cache file...")
-        Vars.manifest_version_path.write_text(latest_manifest_version)
+        Config.manifest_version_path.write_text(latest_manifest_version)
     Vars.manifest_version = latest_manifest_version
-    logger.info(f"Manifest path: {Vars.manifest_json_path}")
+    logger.info(f"Manifest path: {Config.manifest_json_path}")
 
     # Read the manifest into a dict
-    Vars.manifest = json.loads(Vars.manifest_json_path.read_text())
+    Vars.manifest = json.loads(Config.manifest_json_path.read_text())
     # print(list(Vars.manifest.keys()))
 
     # Start the bot
