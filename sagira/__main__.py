@@ -10,6 +10,9 @@ from sagira.bot import SagiraBot
 from sagira.constants import Config, Vars
 
 
+# TODO: configure logging levels based on Config.debug
+
+
 # Faster asyncio loop (not available on Windows)
 # https://github.com/MagicStack/uvloop
 try:
@@ -24,12 +27,11 @@ logger.info(
     f"Initializing Sagira\n"
     f"Discord version: {discord.__version__}\n"
     f"Sagira version: {__version__}\n"
-    f"Prefix: {Config.prefix}\n"
     f"Debug: {Config.debug}"
 )
 sagira_bot = SagiraBot(
-    command_prefix=Config.prefix,
-    activity=discord.Game(name=f"Help: {Config.prefix}help"),
+    command_prefix="!",
+    activity=discord.Game(name=f"Help: !help"),
     application_id=Config.discord_app_id,
     intents=discord.Intents.all(),
 )

@@ -14,9 +14,9 @@ Sagira, yet another Destiny 2 Discord Bot with a focus on statistics and adding 
    poetry install
    ```
 1. Setup a Discord server for testing (or use dedicated channel on an existing server) and add the bot to it
-1. Create a `.env` file in this folder with the bot token. Change debug or command prefix if desired.
+1. Create a `.env` file in this directory with the values below populated
     ```
-    # Enable debugging
+    # Enable/disable debugging
     DEBUG=true
 
     # These fields come from the Discord application page

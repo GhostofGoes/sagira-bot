@@ -12,8 +12,7 @@ except ModuleNotFoundError:
 
 
 class Config:
-    prefix: str = environ.get("COMMAND_PREFIX", "!")  # TODO: remove this, no longer needed
-    debug: str = strtobool(environ.get("DEBUG", "false").lower())
+    debug: bool = bool(strtobool(environ.get("DEBUG", "false").lower()))
     discord_token: str = environ["DISCORD_TOKEN"]
     discord_app_id: str = environ["DISCORD_APP_ID"]
     discord_public_key: str = environ["DISCORD_PUBLIC_KEY"]
