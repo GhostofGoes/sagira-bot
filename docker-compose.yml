@@ -47,7 +47,7 @@ services:
       - xpack.security.enabled=false
       - ELASTIC_PASSWORD=${ELASTIC_PASSWORD}
       # TODO: increase memory limits in production
-      - ES_JAVA_OPTS=-Xms2g -Xmx2g -Des.enforce.bootstrap.checks=true
+      - ES_JAVA_OPTS=-Xms3g -Xmx3g -Des.enforce.bootstrap.checks=true
     ulimits:
       memlock:
         soft: -1
@@ -74,6 +74,11 @@ services:
       - monitoring.ui.container.elasticsearch.enabled=true
     volumes:
       - kibana-data:/usr/share/kibana/data
+    # TODO: add Filebeat
+    #   - elasticsearch logs
+    #   - kibana logs
+    #   - bot logs (from ecs-logging to a file)
+    # TODO: add Metricbeat
 
 networks:
   es-net:
