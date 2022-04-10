@@ -39,18 +39,41 @@ services:
       - node.name=sagira-elastic
       - discovery.type=single-node
       - bootstrap.memory_lock=true
+      - xpack.monitoring.collection.enabled=true
       - xpack.license.self_generated.type=basic
       # TODO: enable security once we have certificates setup
       # - xpack.security.transport.ssl.enabled=true
       # - xpack.security.enabled=true
       - xpack.security.enabled=false
-      - ES_JAVA_OPTS=-Xms4g -Xmx4g -Des.enforce.bootstrap.checks=true
+      - ELASTIC_PASSWORD=${ELASTIC_PASSWORD}
+      # TODO: increase memory limits in production
+      - ES_JAVA_OPTS=-Xms2g -Xmx2g -Des.enforce.bootstrap.checks=true
     ulimits:
       memlock:
         soft: -1
         hard: -1
     volumes:
       - es-data:/usr/share/elasticsearch/data
+  kibana:
+    <<: *service-base
+    image: docker.elastic.co/kibana/kibana:8.1.2
+    container_name: kibana
+    ports:
+      - 5601:5601
+    environment:
+    # TODO: configure kibana security, including a username/password\
+    # https://www.elastic.co/guide/en/kibana/current/using-kibana-with-security.html
+      - elasticsearch.hosts=https://elasticsearch:9200
+      - elasticsearch.username=kibana_system
+      - elasticsearch.password=${KIBANA_PASSWORD}
+      - telemetry.optIn=false
+      - telemetry.enabled=false
+      - xpack.apm.ui.enabled=false
+      - xpack.monitoring.collection.enabled=true
+      - monitoring.ui.enabled=true
+      - monitoring.ui.container.elasticsearch.enabled=true
+    volumes:
+      - kibana-data:/usr/share/kibana/data
 
 networks:
   es-net:
@@ -60,3 +83,4 @@ volumes:
   bot-logs:
   bot-data:
   es-data:
+  kibana-data:
