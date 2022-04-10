@@ -12,7 +12,7 @@ except ModuleNotFoundError:
 
 
 class Config:
-    prefix: str = environ.get("COMMAND_PREFIX", "!")
+    prefix: str = environ.get("COMMAND_PREFIX", "!")  # TODO: remove this, no longer needed
     debug: str = strtobool(environ.get("DEBUG", "false").lower())
     discord_token: str = environ["DISCORD_TOKEN"]
     discord_app_id: str = environ["DISCORD_APP_ID"]
@@ -21,9 +21,12 @@ class Config:
     bungie_api_key: str = environ.get("BUNGIE_API_KEY", "")
     bungie_oauth_client_id: str = environ.get("BUNGIE_OAUTH_CLIENT_ID", "")
     bungie_oauth_client_secret: str = environ.get("BUNGIE_OAUTH_CLIENT_SECRET", "")
-
+    elastic_password: str = environ["ELASTIC_PASSWORD"]
+    kibana_password: str = environ["KIBANA_PASSWORD"]
 
 class Vars:
+    logs_dir: Path = Path.cwd() / "logs"
+    data_dir: Path = Path.cwd() / "data"
     manifest_json_path: Path = Path.cwd() / "manifest.json"
     manifest_version: str = ""
     manifest_version_path: Path = Path.cwd() / "manifest_version.txt"

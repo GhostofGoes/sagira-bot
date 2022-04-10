@@ -2,6 +2,9 @@
 manifest.json
 manifest_version.txt
 
+/logs
+/data
+
 
 .idea/
 .vscode/
