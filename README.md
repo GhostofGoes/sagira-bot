@@ -42,7 +42,6 @@ Sagira, yet another Destiny 2 Discord Bot with a focus on statistics and adding 
     poetry run task start
     ```
 
-
 # Running the bot with Docker
 1. Ensure `vm.max_map_count` is set for whatever is running Docker. If you're on Windows, then this is your WSL2 distro. **Once this is configured, close any open terminals and restart the Docker daemon**.
     ```bash
@@ -57,6 +56,23 @@ Sagira, yet another Destiny 2 Discord Bot with a focus on statistics and adding 
     ```bash
     docker-compose logs -f
     ```
+
+# Development tips
+```bash
+# List available commands
+$ poetry run task -l
+start         python -m sagira
+precommit     pre-commit install
+lint          task run_precommit && task vulture && task bandit && task flake8 && task mypy && task spelling
+run_precommit pre-commit run --all-files
+flake8        flake8 sagira
+mypy          mypy sagira
+bandit        bandit --recursive sagira
+vulture       vulture --min-confidence 100 sagira
+
+# Run lint checks
+poetry run task lint
+```
 
 # Credits
 This bot heavily derives from [Python Discord's](https://github.com/python-discord) projects, including their [bots](https://github.com/python-discord/bot).
