@@ -2,7 +2,7 @@
 
 import asyncio
 import json
-import logging
+from logging.handlers import RotatingFileHandler
 
 import aiobungie
 import discord
@@ -15,12 +15,12 @@ from sagira.constants import Config, Vars
 
 # Save logs in Elastic Common Schema (ECS) format to a JSON file (JSON Lines, aka ".jsonl")
 # These logs will be ingested by Filebeat and shipped to Elasticsearch
-file_handler = logging.FileHandler(str(Vars.logs_dir / "ecs_log.jsonl"))
+file_handler = RotatingFileHandler(Vars.logs_dir / "ecs_log.jsonl", maxBytes=1e+7, backupCount=3)
 file_handler.setFormatter(ecs_logging.StdlibFormatter())
 logger.add(file_handler, format="{message}")
 
-# TODO: save normal human-readable logs to file
-# TODO: log file rotation
+# Save normal human-readable logs to file
+logger.add(Vars.logs_dir / "sagira.log", rotation="10 MB", retention=5)
 
 # Faster asyncio loop (not available on Windows)
 # https://github.com/MagicStack/uvloop
